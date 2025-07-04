@@ -18,10 +18,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes
 app.use('/', contactsRoute);
 
-const startServer = async () => {
+const launchServer = async () => {
     try {
         const client = await initDb();
 
+        await mongoose.connect(process.env.MONGOOSE_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+
+        console.log("Mongoose connected successfully");
 
         app.listen(port, () => {
             console.log(`Server running successfully on port ${port}`);
@@ -31,4 +37,4 @@ const startServer = async () => {
     }
 };
 
-startServer();
+launchServer();
