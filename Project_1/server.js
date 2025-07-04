@@ -27,7 +27,7 @@ const launchServer = async () => {
             useUnifiedTopology: true
         });
 
-        console.log("Mongoose connected successfully");
+        console.log("Mongoose connected successfully!");
 
         app.listen(port, () => {
             console.log(`Server running successfully on port ${port}`);
