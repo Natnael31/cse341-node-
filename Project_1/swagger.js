@@ -5,7 +5,7 @@ const doc = {
         title: 'My API',
         description: 'contact management api'
     },
-    host: 'localhost:3000',
+    host: 'https://cse341-node-api.onrender.com',
     schemes: ['http'],
 };
 
