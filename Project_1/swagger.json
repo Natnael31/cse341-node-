@@ -5,10 +5,10 @@
     "description": "contact management api",
     "version": "1.0.0"
   },
-  "host": "https://cse341-node-api.onrender.com",
+  "host": "https://cse341-node-api.onrender.com/",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
