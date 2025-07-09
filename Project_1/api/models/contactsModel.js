@@ -1,3 +1,5 @@
+// Data schema for adding contacts to the mongodb using mongoose
+
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({

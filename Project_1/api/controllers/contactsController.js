@@ -7,16 +7,42 @@ const contactsController = {}
 contactsController.addContact = async (req, res) => {
 
     try {
-        const newContact = new Contact({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            favoriteColor: req.body.favoriteColor,
-            birthDate: req.body.birthDate
+
+        //  // Using Mongoose 'contact' schema
+
+        // const newContact = new Contact({
+        //     firstName: req.body.firstName,
+        //     lastName: req.body.lastName,
+        //     email: req.body.email,
+        //     favoriteColor: req.body.favoriteColor,
+        //     birthDate: req.body.birthDate
+        // });
+
+        // const addContact = await newContact.save();
+        // res.status(201).json(addContact);
+
+
+        //  // Using native mongodb and raw json data as a whole
+        // const newContact = req.body;
+        // console.log(newContact);
+        // const client = await getClient();
+        // const addContact = await client.db("contacts").collection("contacts").insertOne(newContact);
+        // res.status(201).json(addContact);
+
+        let firstName = req.body.firstName;
+        let lastName = req.body.lastName;
+        let email = req.body.email;
+        let favoriteColor = req.body.favoriteColor;
+        let birthDate = req.body.birthDate;
+
+        const client = await getClient();
+        const addContact = await client.db("contacts").collection("contacts").insertOne({
+            firstName,
+            lastName,
+            email,
+            favoriteColor,
+            birthDate
         });
-
-        const addContact = await newContact.save();
-
         res.status(201).json(addContact);
     } catch (err) {
         console.error(err);
