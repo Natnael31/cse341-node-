@@ -46,19 +46,19 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "email"
                 },
                 "favoriteColor": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "birthDate": {
-                  "example": "any"
+                  "example": "date"
                 }
               }
             }
@@ -80,6 +80,71 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "string"
+                },
+                "lastName": {
+                  "example": "string"
+                },
+                "email": {
+                  "example": "email"
+                },
+                "favoriteColor": {
+                  "example": "string"
+                },
+                "birthDate": {
+                  "example": "date"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
         "parameters": [
           {
             "name": "id",
