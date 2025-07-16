@@ -66,8 +66,6 @@ patientsController.getSinglePatient = async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Error fetching patient", error: err.message });
-    } finally {
-        next()
     }
 }
 
