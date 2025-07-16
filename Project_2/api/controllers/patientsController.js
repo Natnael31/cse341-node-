@@ -93,7 +93,7 @@ patientsController.updatePatient = async (req, res) => {
             insuranceDetails
         });
         res.setHeader("Content-Type", "application/json");
-        res.status(200).json({ message: "Patient updated sucessfully!" });
+        res.status(204).json({ message: "Patient updated sucessfully!" });
 
     } catch (error) {
 
