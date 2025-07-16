@@ -6,7 +6,7 @@ const doc = {
         description: 'Patient management api'
     },
     // host: 'cse341-node-api.onrender.com',
-    host: 'cse341-node-api.onrender.com',
+    host: 'cse341-node-api2.onrender.com',
     schemes: ['https'],
 };
 
