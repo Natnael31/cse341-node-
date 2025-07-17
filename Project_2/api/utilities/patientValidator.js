@@ -51,6 +51,58 @@ validate.patientupdateValidationRules = () => {
   ]
 }
 
+validate.doctorAddValidationRules = () => {
+  return [
+    body("firstName")
+      .notEmpty()
+      .withMessage("Please provide a first name!"),
+
+    body("lastName")
+      .notEmpty()
+      .withMessage("Please provide a last name!"),
+
+    body("email")
+      .notEmpty()
+      .isEmail()
+      .withMessage("Email must be an email, and it is required!"),
+
+    body("phoneNumber")
+      .notEmpty()
+      .isNumeric()
+      .withMessage("Phone number is required!"),
+
+    body("department")
+      .notEmpty()
+      .withMessage("Doctor department is required!"),
+  ]
+}
+
+validate.doctorUpdateValidationRules = () => {
+  return [
+    body("firstName")
+      .notEmpty()
+      .withMessage("Please provide a first name!"),
+
+    body("lastName")
+      .notEmpty()
+      .withMessage("Please provide a last name!"),
+
+    body("email")
+      .notEmpty()
+      .isEmail()
+      .withMessage("Email must be an email, and it is required!"),
+
+    body("phoneNumber")
+      .notEmpty()
+      .isNumeric()
+      .withMessage("Phone number is required!"),
+
+    body("department")
+      .notEmpty()
+      .withMessage("Doctor department is required!"),
+  ]
+}
+
 validate.checkAddPatient = (req, res, next) => {
   let errors = []
   errors = validationResult(req)
@@ -61,6 +113,24 @@ validate.checkAddPatient = (req, res, next) => {
 }
 
 validate.checkUpdatePatient = (req, res, next) => {
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
+
+validate.checkAddDoctor = (req, res, next) => {
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
+
+validate.checkUpdateDoctor = (req, res, next) => {
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
