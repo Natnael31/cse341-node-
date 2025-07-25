@@ -2,13 +2,25 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "contact management api",
+    "description": "Patient management api",
     "version": "1.0.0"
   },
-  "host": "cse341-node-api.onrender.com",
+  "host": "http://localhost:3000/",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
+  ],
+  "securityDefinitions": {
+    "cookieAuth": {
+      "type": "apiKey",
+      "in": "cookie",
+      "name": "connect.sid"
+    }
+  },
+  "security": [
+    {
+      "cookieAuth": []
+    }
   ],
   "paths": {
     "/": {
@@ -21,11 +33,207 @@
         }
       }
     },
-    "/contacts": {
+    "/patients": {
+      "get": {
+        "description": "Get all patients (requires login via GitHub OAuth)",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "Create a patient (requires login via GitHub OAuth)",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "string"
+                },
+                "lastName": {
+                  "example": "string"
+                },
+                "age": {
+                  "example": "int"
+                },
+                "gender": {
+                  "example": "string"
+                },
+                "bloodType": {
+                  "example": "string"
+                },
+                "diagnosis": {
+                  "example": "string"
+                },
+                "insuranceDetails": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/patients/{id}": {
       "get": {
         "description": "",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "string"
+                },
+                "lastName": {
+                  "example": "string"
+                },
+                "age": {
+                  "example": "int"
+                },
+                "gender": {
+                  "example": "string"
+                },
+                "bloodType": {
+                  "example": "string"
+                },
+                "diagnosis": {
+                  "example": "string"
+                },
+                "insuranceDetails": {
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/doctors": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -54,19 +262,27 @@
                 "email": {
                   "example": "email"
                 },
-                "favoriteColor": {
-                  "example": "string"
+                "phoneNumber": {
+                  "example": "int"
                 },
-                "birthDate": {
-                  "example": "date"
+                "department": {
+                  "example": "string"
                 }
               }
             }
           }
         ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -74,7 +290,7 @@
         }
       }
     },
-    "/contacts/{id}": {
+    "/doctors/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -86,6 +302,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -124,19 +345,27 @@
                 "email": {
                   "example": "email"
                 },
-                "favoriteColor": {
-                  "example": "string"
+                "phoneNumber": {
+                  "example": "int"
                 },
-                "birthDate": {
-                  "example": "date"
+                "department": {
+                  "example": "string"
                 }
               }
             }
           }
         ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -151,6 +380,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {

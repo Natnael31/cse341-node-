@@ -3,7 +3,13 @@ const patientsController = require("../controllers/patientsController");
 const doctorsController = require("../controllers/doctorsController");
 const validate = require("../utilities/patientValidator")
 
-router.get("/", (req, res) => res.send("Hello Mongodb"));
+router.get("/", (req, res) => {
+    if (req.isAuthenticated()) {
+        res.send(`Welcome, ${req.user.email}`);
+    } else {
+        res.send("Hello guest. Please log in.");
+    }
+});
 router.get("/patients", patientsController.getPatients);
 router.get("/patients/:id", patientsController.getSinglePatient);
 router.post("/patients", validate.patientAddValidationRules(), validate.checkAddPatient, patientsController.addPatient);
