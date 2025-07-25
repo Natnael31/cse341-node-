@@ -5,10 +5,22 @@
     "description": "Medical records management api",
     "version": "1.0.0"
   },
-  "host": "cse341-node-api.onrender.com",
+  "host": "cse341-node-api2.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
+  ],
+  "securityDefinitions": {
+    "cookieAuth": {
+      "type": "apiKey",
+      "in": "cookie",
+      "name": "connect.sid"
+    }
+  },
+  "security": [
+    {
+      "cookieAuth": []
+    }
   ],
   "paths": {
     "/": {
@@ -23,13 +35,21 @@
     },
     "/patients": {
       "get": {
-        "description": "",
+        "description": "Get all patients (requires login via GitHub OAuth)",
         "produces": [
           "application/json"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -37,7 +57,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "Create a patient (requires login via GitHub OAuth)",
         "parameters": [
           {
             "name": "body",
@@ -46,22 +66,22 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "age": {
-                  "example": "any"
+                  "example": "int"
                 },
                 "gender": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "bloodType": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "diagnosis": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "insuranceDetails": {
                   "example": "any"
@@ -70,12 +90,20 @@
             }
           }
         ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -95,6 +123,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -125,28 +158,33 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "age": {
-                  "example": "any"
+                  "example": "int"
                 },
                 "gender": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "bloodType": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "diagnosis": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "insuranceDetails": {
-                  "example": "any"
+                  "example": "string"
                 }
               }
             }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -171,6 +209,11 @@
             "type": "string"
           }
         ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -186,6 +229,11 @@
         "description": "",
         "produces": [
           "application/json"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -206,22 +254,27 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "email"
                 },
                 "phoneNumber": {
-                  "example": "any"
+                  "example": "int"
                 },
                 "department": {
-                  "example": "any"
+                  "example": "string"
                 }
               }
             }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -251,6 +304,11 @@
             "type": "string"
           }
         ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -279,22 +337,27 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "email"
                 },
                 "phoneNumber": {
-                  "example": "any"
+                  "example": "int"
                 },
                 "department": {
-                  "example": "any"
+                  "example": "string"
                 }
               }
             }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -319,49 +382,11 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
+        "security": [
+          {
+            "cookieAuth": []
           }
-        }
-      }
-    },
-    "/login": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/github/callback": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/login-failed": {
-      "get": {
-        "description": "",
-        "responses": {
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/logout": {
-      "get": {
-        "description": "",
+        ],
         "responses": {
           "200": {
             "description": "OK"

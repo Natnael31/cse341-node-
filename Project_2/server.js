@@ -30,10 +30,11 @@ app.use(passport.session());
 configureOAuth();
 
 // Routes
-app.use("/api-docs", swaggerUi.serve);
-app.get("/api-docs", swaggerUi.setup(swaggerDocument));
+
 app.use("/auth", authRoutes);
 app.use("/", authenticate, patientsRoute);
+app.use("/api-docs", swaggerUi.serve);
+app.get("/api-docs", swaggerUi.setup(swaggerDocument));
 
 
 const launchServer = async () => {

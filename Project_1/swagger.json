@@ -2,25 +2,13 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Patient management api",
+    "description": "contact management api",
     "version": "1.0.0"
   },
-  "host": "http://localhost:3000/",
+  "host": "cse341-node-api.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
-  ],
-  "securityDefinitions": {
-    "cookieAuth": {
-      "type": "apiKey",
-      "in": "cookie",
-      "name": "connect.sid"
-    }
-  },
-  "security": [
-    {
-      "cookieAuth": []
-    }
+    "https"
   ],
   "paths": {
     "/": {
@@ -33,23 +21,15 @@
         }
       }
     },
-    "/patients": {
+    "/contacts": {
       "get": {
-        "description": "Get all patients (requires login via GitHub OAuth)",
+        "description": "",
         "produces": [
           "application/json"
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -57,7 +37,7 @@
         }
       },
       "post": {
-        "description": "Create a patient (requires login via GitHub OAuth)",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -66,44 +46,27 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "lastName": {
-                  "example": "string"
+                  "example": "any"
                 },
-                "age": {
-                  "example": "int"
+                "email": {
+                  "example": "any"
                 },
-                "gender": {
-                  "example": "string"
+                "favoriteColor": {
+                  "example": "any"
                 },
-                "bloodType": {
-                  "example": "string"
-                },
-                "diagnosis": {
-                  "example": "string"
-                },
-                "insuranceDetails": {
+                "birthDate": {
                   "example": "any"
                 }
               }
             }
           }
         ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -111,7 +74,7 @@
         }
       }
     },
-    "/patients/{id}": {
+    "/contacts/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -123,11 +86,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -158,41 +116,27 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "lastName": {
-                  "example": "string"
+                  "example": "any"
                 },
-                "age": {
-                  "example": "int"
+                "email": {
+                  "example": "any"
                 },
-                "gender": {
-                  "example": "string"
+                "favoriteColor": {
+                  "example": "any"
                 },
-                "bloodType": {
-                  "example": "string"
-                },
-                "diagnosis": {
-                  "example": "string"
-                },
-                "insuranceDetails": {
-                  "example": "string"
+                "birthDate": {
+                  "example": "any"
                 }
               }
             }
           }
         ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
+          "200": {
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -207,184 +151,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/doctors": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "string"
-                },
-                "lastName": {
-                  "example": "string"
-                },
-                "email": {
-                  "example": "email"
-                },
-                "phoneNumber": {
-                  "example": "int"
-                },
-                "department": {
-                  "example": "string"
-                }
-              }
-            }
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/doctors/{id}": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "string"
-                },
-                "lastName": {
-                  "example": "string"
-                },
-                "email": {
-                  "example": "email"
-                },
-                "phoneNumber": {
-                  "example": "int"
-                },
-                "department": {
-                  "example": "string"
-                }
-              }
-            }
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
