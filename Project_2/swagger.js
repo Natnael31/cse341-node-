@@ -3,7 +3,7 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
     info: {
         title: 'My API',
-        description: 'Patient management api'
+        description: 'Medical records management api'
     },
     host: 'cse341-node-api.onrender.com',
     // host: 'localhost:3000',
@@ -11,7 +11,8 @@ const doc = {
 };
 
 const outputFile = './swagger.json';
-const routes = ['./api/routes/patientsRoute.js'];
+// const routes = ['./api/routes/patientsRoute.js'];
+const routes = ['./api/routes/patientsRoute.js', './api/routes/authRoutes.js'];
 
 
 swaggerAutogen(outputFile, routes, doc);
