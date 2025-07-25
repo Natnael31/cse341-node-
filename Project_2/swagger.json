@@ -10,18 +10,6 @@
   "schemes": [
     "https"
   ],
-  "securityDefinitions": {
-    "cookieAuth": {
-      "type": "apiKey",
-      "in": "cookie",
-      "name": "connect.sid"
-    }
-  },
-  "security": [
-    {
-      "cookieAuth": []
-    }
-  ],
   "paths": {
     "/": {
       "get": {
@@ -35,21 +23,13 @@
     },
     "/patients": {
       "get": {
-        "description": "Get all patients (requires login via GitHub OAuth)",
+        "description": "",
         "produces": [
           "application/json"
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -57,7 +37,7 @@
         }
       },
       "post": {
-        "description": "Create a patient (requires login via GitHub OAuth)",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -66,22 +46,22 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "lastName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "age": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "gender": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "bloodType": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "diagnosis": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "insuranceDetails": {
                   "example": "any"
@@ -90,20 +70,12 @@
             }
           }
         ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
         "responses": {
           "201": {
             "description": "Created"
           },
           "400": {
             "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -123,11 +95,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -158,33 +125,28 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "lastName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "age": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "gender": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "bloodType": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "diagnosis": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "insuranceDetails": {
-                  "example": "string"
+                  "example": "any"
                 }
               }
             }
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -209,11 +171,6 @@
             "type": "string"
           }
         ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -229,11 +186,6 @@
         "description": "",
         "produces": [
           "application/json"
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
         ],
         "responses": {
           "200": {
@@ -254,27 +206,22 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "lastName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "email": {
-                  "example": "email"
+                  "example": "any"
                 },
                 "phoneNumber": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "department": {
-                  "example": "string"
+                  "example": "any"
                 }
               }
             }
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -304,11 +251,6 @@
             "type": "string"
           }
         ],
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -337,27 +279,22 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "lastName": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "email": {
-                  "example": "email"
+                  "example": "any"
                 },
                 "phoneNumber": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "department": {
-                  "example": "string"
+                  "example": "any"
                 }
               }
             }
-          }
-        ],
-        "security": [
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -382,11 +319,49 @@
             "type": "string"
           }
         ],
-        "security": [
-          {
-            "cookieAuth": []
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
-        ],
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/github/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/login-failed": {
+      "get": {
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
